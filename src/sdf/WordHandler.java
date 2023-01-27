@@ -10,29 +10,29 @@ import java.util.Map;
 
 public class WordHandler {
     private int totalWordCount = 0;
-    // private String word;
     private String wordFound;
-    HashMap<String, Integer> words = new HashMap<>();
+    HashMap<String, Integer> wordMap = new HashMap<>();
 
     public void compute(String wordFound) {
-        // this.word = word;
         this.wordFound = wordFound;
 
-        if (words.containsKey(wordFound)) {
+        if (wordMap.containsKey(wordFound)) {
             // if key exist, increase value by 1
-            words.computeIfPresent(wordFound, (word, count) -> Integer.valueOf(count.intValue() + 1));
+            wordMap.computeIfPresent(wordFound, (word, count) -> Integer.valueOf(count.intValue() + 1));
             totalWordCount += 1;
 
         } else {
             // if new key, set key value of map to 1
-            words.computeIfAbsent(wordFound, word -> Integer.valueOf(1));
+            wordMap.computeIfAbsent(wordFound, word -> Integer.valueOf(1));
             totalWordCount += 1;
         }
 
     }
-    //used for manual checking purpose
+    
     public void eachWordCount() {
-        words.forEach((word, count) -> System.out.println(words));
+        //used for manual checking purpose
+        // words.forEach((word, count) -> System.out.println(count));
+        System.out.println("Number of unique words is: " + wordMap.size());
     }
 
     public void totalCount() {
@@ -71,13 +71,13 @@ public class WordHandler {
         int count =0;
         float freq = 0;
 
-        Map<String, Integer> sortedWords = sortByValue(words);
+        Map<String, Integer> sortedWords = sortByValue(wordMap);
         System.out.println("The top 10 most freq words are:");
 
         for (Map.Entry<String, Integer> i : sortedWords.entrySet()) {
             freq = ((float)i.getValue())/totalWordCount;
             count +=1; 
-            System.out.printf("%d) Word = %s, Count = %d, Freq = %.5f\n", (count), i.getKey() , i.getValue(),freq);
+            System.out.printf("%d) Word = %s \tCount = %d \tFreq = %.5f\n", (count), i.getKey() , i.getValue(),freq);
               
         }
     }

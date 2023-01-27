@@ -12,10 +12,8 @@ public class TermFreq {
 
     public static void main(String[] args) {
 
-        // HashMap<String, Integer> words = new HashMap<>();
-        Path filePath = Paths.get("./textfile/cat_in_the_hat.txt");
+        Path filePath = Paths.get("./textfile/" + args[0] + ".txt");
         File file = filePath.toFile();
-        // int totalWordCount = 0;
 
         if (!file.exists()) {
             System.err.println("Cannot find file");
@@ -39,7 +37,7 @@ public class TermFreq {
                 String wordFound = matcher.group();
                 wh.compute(wordFound);
             }
-            // wh.eachWordCount();
+            wh.eachWordCount();
             wh.totalCount();
             wh.getTopCount();
 
